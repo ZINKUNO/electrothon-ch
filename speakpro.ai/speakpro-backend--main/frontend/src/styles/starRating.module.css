@@ -1,0 +1,11 @@
+.starRating {
+  font-size: 32px;
+}
+
+.star {
+  color: var(--color-dark-gray);
+}
+
+.filled {
+  color: var(--color-teal);
+}

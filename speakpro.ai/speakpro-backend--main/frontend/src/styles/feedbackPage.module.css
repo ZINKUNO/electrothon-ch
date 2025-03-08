@@ -1,0 +1,81 @@
+.feedbackPageLayout {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-xx-large);
+  align-items: center;
+  max-width: 1200px;
+  margin: auto;
+  padding: var(--padding-medium) 0;
+  min-height: calc(100vh - 90px);
+  padding-bottom: var(--padding-xx-large);
+}
+
+.feedbackSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-large);
+  align-items: center;
+  width: 100%;
+}
+
+.feedbackContent {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+
+.feedbackText {
+  text-align: left;
+  max-width: 70%;
+}
+
+@media screen and (max-width: 1000px) {
+  .feedbackPageLayout {
+    max-width: 80%;
+    width: auto;
+    gap: var(--gap-x-large);
+  }
+
+  .feedbackContent {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--gap-x-small);
+  }
+
+  .feedbackText {
+    max-width: 100%;
+  }
+}
+
+.progress {
+  background: rgba(255, 255, 255, 0.1);
+  justify-content: flex-start;
+  border-radius: 100px;
+  align-items: center;
+  position: relative;
+  padding: 0 5px;
+  display: flex;
+  height: 20px;
+  width: 400px;
+}
+
+.progressValue {
+  transition: width 1s;
+  box-shadow: 0 10px 40px -10px #fff;
+  border-radius: 100px;
+  background: var(--color-teal);
+  height: 10px;
+}
+
+.progressBarContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.centeredTitle {
+  text-align: center;
+}

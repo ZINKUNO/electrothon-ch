@@ -1,0 +1,46 @@
+.section {
+    padding: 1rem;
+    background-color: #333;
+    border-radius: 10px;
+  }
+  
+  .scores {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .score-box {
+    background-color: #444;
+    padding: 1rem;
+    flex: 1;
+    text-align: center;
+    border-radius: 8px;
+  }
+  
+  .score-box h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #4caf50;
+  }
+  
+  .score-box p {
+    font-size: 0.9rem;
+    color: #bbb;
+  }
+  
+  h3 {
+    margin-top: 1.5rem;
+    color: #4caf50;
+  }
+  
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  ul li {
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+  }
+  

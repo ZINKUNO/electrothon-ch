@@ -1,0 +1,33 @@
+.appHeader {
+  text-decoration: none;
+  display: flex;
+  gap: var(--gap-x-small);
+}
+
+.appHeaderBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: var(--padding-small);
+  background: rgba(20, 20, 39, 0.5);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  z-index: 10;
+}
+
+.appName {
+  font-family: sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 60px;
+  color: var(--color-light-gray);
+}
+
+.highlight {
+  color: var(--color-teal);
+  font-family: "Road Rage", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 50px;
+}

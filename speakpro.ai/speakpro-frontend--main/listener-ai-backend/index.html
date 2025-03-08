@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SpeakPro AI</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #67efd9;
+      color: #fff;
+    }
+    .container {
+      display: flex;
+      height: 100vh;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 1rem;
+      background-color: #2e2e2e;
+    }
+    .sidebar {
+      width: 20%;
+      background-color: #2a2a2a;
+      padding: 1rem;
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+    }
+    .content {
+      width: 80%;
+      display: flex;
+      flex-direction: column;
+    }
+    .header {
+      padding: 1rem;
+      background-color: #2a2a2a;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      margin: 0 1rem;
+    }
+    .audio-player {
+      padding: 1rem;
+      background-color: #333;
+      display: flex;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      margin: 1rem;
+    }
+    .audio-player audio {
+      width: 100%;
+      max-width: 600px;
+    }
+    .buttons {
+      margin: 1rem;
+      display: flex;
+      justify-content: space-around;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      padding: 0.5rem;
+      background-color: #2e2e2e;
+    }
+    .button {
+      padding: 0.7rem 1.5rem;
+      border: none;
+      cursor: pointer;
+      background-color: #d32f2f;
+      color: #fff;
+      border-radius: 20px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+    .button:hover {
+      background-color: #f44336;
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+      transform: translateY(-2px);
+    }
+    .button.active {
+      background-color: #b71c1c;
+    }
+    .section {
+      padding: 1rem;
+      overflow-y: auto;
+      flex: 1;
+      display: none;
+      margin: 1rem;
+      background-color: #2a2a2a;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+    .section.active {
+      display: block;
+    }
+    .call {
+      background-color: #333;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+    }
+    .call:hover {
+      background-color: #444;
+      transform: translateY(-2px);
+    }
+    .call.active {
+      background-color: #444;
+    }
+    .dialogue {
+      margin-bottom: 1rem;
+    }
+    .dispatcher {
+      color: #f25b5b;
+    }
+    .caller {
+      color: #4aa3f5;
+    }
+    .scores {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .score-box h3 {
+      font-size: 1.5rem;
+      color: #4caf50;
+    }
+    .score-box p {
+      font-size: 1rem;
+      color: #aaa;
+    }
+    .analysis-section {
+      margin-top: 1rem;
+      padding: 1rem;
+      background-color: #333;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+    .analysis-section h3 {
+      color: #4caf50;
+    }
+    .analysis-section ul {
+      list-style-type: disc;
+      padding-left: 1.5rem;
+      color: #aaa;
+    }
+    .analysis-section ul li {
+      margin-bottom: 0.5rem;
+    }
+    .score-box {
+      text-align: center;
+      background-color: #333;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+    .dialogue-box {
+      margin: 1rem 0;
+      background-color: #333;
+      padding: 1rem;
+      border-radius: 15px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+    .dialogue-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+    .role {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      border-radius: 15px;
+      font-size: 0.9rem;
+      font-weight: bold;
+      margin-right: 0.5rem;
+    }
+    .dispatcher {
+      background-color: #f25b5b;
+      color: #fff;
+    }
+    .caller {
+      background-color: #4aa3f5;
+      color: #fff;
+    }
+    .timestamp {
+      font-weight: 400;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+    .dialogue-content {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+    .pagination {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1rem;
+    }
+    .pagination button {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 5px;
+      background-color: #d32f2f;
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .pagination button:hover {
+      background-color: #f44336;
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <h2>Calls</h2>
+      <div class="call active">Conversation [1]<br><small>03:18</small></div>
+      <div class="pagination">
+        <button>Previous</button> <span>1/1</span> <button>Next</button>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+      <!-- Header -->
+      <div class="header">
+        <h1>Speak Pro AI</h1>
+        <a href="https://verbalmate-ai.vercel.app/" target="_self" style="display: inline-block; margin-right: 10px;">
+          <button class="button">Conversation Simulator</button>
+        </a>
+        <a href="https://verbalmate-ai-nethenoob-spinning-cat-analyzer.streamlit.app/" target="_self" style="display: inline-block;">
+          <button class="button">Record / Upload Audio</button>
+        </a>
+      </div>
+
+      <!-- Audio Player -->
+      <div class="audio-player" style="display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 1200px; margin: 5 auto;">
+        <audio controls style="width: 100%; max-width: 100%; border: 1px solid #ccc; border-radius: 8px;">
+          <source src="/public/call-audio.mp3" type="audio/mp3">
+          Your browser does not support the audio element.
+        </audio>
+        <!-- Toggle Buttons -->
+        <div class="buttons" style="display: flex; gap: 10px; margin-top: 10px; width: 100%; justify-content: center;">
+          <button class="button active" id="transcription-btn" style="flex: 1; padding: 10px 20px; max-width: 200px;">Transcription</button>
+          <button class="button" id="analysis-btn" style="flex: 1; padding: 10px 20px; max-width: 200px;">Performance Analysis</button>
+        </div>
+      </div>
+      
+      <!-- Transcription Section -->
+      <div class="section active" id="transcription">
+        <h2>Transcript</h2>
+        <div class="dialogue-box">
+          <div class="dialogue-header">
+            <span class="role dispatcher">You</span>
+            <span class="timestamp">(0:02 - 0:06)</span>
+          </div>
+          <div class="dialogue-content">Hello! Good Morning. How are you doing?</div>
+        </div>
+        <div class="dialogue-box">
+          <div class="dialogue-header">
+            <span class="role caller">Person 1</span>
+            <span class="timestamp">(0:07 - 0:08)</span>
+          </div>
+          <div class="dialogue-content">I am fine. Thanks for asking.</div>
+        </div>
+        <div class="dialogue-box">
+          <div class="dialogue-header">
+            <span class="role caller">Person 1</span>
+            <span class="timestamp">(0:09 - 0:15)</span>
+          </div>
+          <div class="dialogue-content">Hey, did you hear about the new coffee shop that just opened downtown?</div>
+        </div>
+        <div class="dialogue-box">
+          <div class="dialogue-header">
+            <span class="role dispatcher">You</span>
+            <span class="timestamp">(0:25 - 0:27)</span>
+          </div>
+          <div class="dialogue-content">Oh yeah, I saw something about it on Instagram. Have you tried it yet?</div>
+        </div>
+        <div class="dialogue-box">
+          <div class="dialogue-header">
+            <span class="role caller">Person 1</span>
+            <span class="timestamp">(0:42 - 0:44)</span>
+          </div>
+          <div class="dialogue-content">Not yet, but I’m planning to this weekend. They say their caramel latte is amazing.</div>
+        </div>
+        <div class="dialogue-box">
+          <div class="dialogue-header">
+            <span class="role dispatcher">You</span>
+            <span class="timestamp">(0:50 - 0:54)</span>
+          </div>
+          <div class="dialogue-content">Perfect! Maybe we can check it out together? I’ve been meaning to try something new too.</div>
+        </div>
+      </div>
+
+      <!-- Performance Analysis Section -->
+      <div class="section" id="analysis">
+        <h2>Performance Analysis</h2>
+        <div class="scores">
+          <div class="score-box">
+            <h3>8/10</h3>
+            <p>Total Score</p>
+          </div>
+          <div class="score-box">
+            <h3>7/10</h3>
+            <p>Professionalism</p>
+          </div>
+          <div class="score-box">
+            <h3>8/10</h3>
+            <p>Responsiveness</p>
+          </div>
+          <div class="score-box">
+            <h3>7/10</h3>
+            <p>Clarity</p>
+          </div>
+          <div class="score-box">
+            <h3>9/10</h3>
+            <p>Engagement</p>
+          </div>
+          <div class="score-box">
+            <h3>8/10</h3>
+            <p>Outcome</p>
+          </div>
+        </div>
+        <div class="analysis-section" style="font-family: Arial, sans-serif;">
+          <h3 style="text-align: center; color: #ff4d4d; margin-bottom: 20px;">You</h3>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 15px;">
+              <strong style="color: #4caf50; font-size: 18px;">Strengths</strong>
+              <ul style="margin: 10px 0 0 20px; list-style: disc;">
+                <li>You initiated the conversations and kept them engaging by sharing interesting topics.</li>
+                <li>You are thoughtful and considerate, suggesting an activity that aligns with mutual interests (coffee and books).</li>
+              </ul>
+            </li>
+            <li style="margin-bottom: 15px;">
+              <strong style="color: #f44336; font-size: 18px;">Weaknesses</strong>
+              <ul style="margin: 10px 0 0 20px; list-style: disc;">
+                <li>You don’t explore alternative options in case Person 1 isn’t available or doesn’t like the suggestion.</li>
+                <li>You assume Person 1’s preferences without explicitly asking if they’re interested in trying the coffee shop.</li>
+              </ul>
+            </li>
+            <li>
+              <strong style="color: #ff9800; font-size: 18px;">Suggestions</strong>
+              <ul style="margin: 10px 0 0 20px; list-style: disc;">
+                <li><strong style="color: #ffc107;">Question Clarity:</strong> You could ask more open-ended questions to involve Person 1 in the decision-making process.</li>
+                <li>You could provide a few alternative options to ensure the plan is flexible and collaborative.</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div class="analysis-section">
+          <h3>Key Insights</h3>
+          <ul>
+            <li>You excel at initiating engaging conversations and suggesting thoughtful activities that align with shared interests, fostering a sense of connection.</li>
+            <li>There’s an opportunity to enhance collaboration by involving Person 1 more actively in decisions and confirming their preferences.
+              <li>Flexibility in planning, such as offering alternative options, can strengthen mutual satisfaction and ensure a seamless experience.</li>
+            </li>
+          </ul>
+        </div>
+        <div class="analysis-section">
+          <h3>Actions to Take Next Time</h3>
+          <ul>
+            <li><strong style="color: #ffc107;">Engage in Collaboration:  </strong> Ask open-ended questions to involve Person 1 in the decision-making process, such as, "What do you think about visiting the coffee shop?"</li>
+            <li><strong style="color: #ffc107;">Confirm Preferences:  </strong> Ensure Person 1’s preferences and availability align with the plan before finalizing, showing consideration for their schedule and interests.</li>
+            <li><strong style="color: #ffc107;">Offer Alternatives: </strong> Suggest backup options to make the plan more flexible, like proposing a different café or activity if the initial idea doesn’t work out.</li>
+          </ul>
+        </div>   
+        <div class="analysis-section">
+          <h3>Conclusion</h3>
+          <ul>
+            <li>You demonstrate strong conversational and planning skills, showing enthusiasm and thoughtfulness in your interactions. However, by actively involving Person 1 in decisions and incorporating flexibility into your plans, you can further enhance collaboration and build more engaging and mutually satisfying conversations.</li>
+          </ul>
+        </div> 
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const transcriptionBtn = document.getElementById('transcription-btn');
+    const analysisBtn = document.getElementById('analysis-btn');
+    const transcriptionSection = document.getElementById('transcription');
+    const analysisSection = document.getElementById('analysis');
+
+    transcriptionBtn.addEventListener('click', () => {
+      transcriptionBtn.classList.add('active');
+      analysisBtn.classList.remove('active');
+      transcriptionSection.classList.add('active');
+      analysisSection.classList.remove('active');
+    });
+
+    analysisBtn.addEventListener('click', () => {
+      analysisBtn.classList.add('active');
+      transcriptionBtn.classList.remove('active');
+      analysisSection.classList.add('active');
+      transcriptionSection.classList.remove('active');
+    });
+  </script>
+</body>
+</html>

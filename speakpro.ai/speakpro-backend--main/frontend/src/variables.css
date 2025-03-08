@@ -1,0 +1,42 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Road+Rage&display=swap");
+
+:root {
+  /* colors */
+  --color-white: #ffffff;
+  --color-dark-blue: #141427;
+  --color-medium-blue: #1e1e32;
+  --color-teal: #00adb5;
+  --color-space-blue: #313153;
+
+  --color-light-gray: #eeeeee;
+  --color-medium-gray: #bfbfbf;
+  --color-dark-gray: #818181;
+
+  /* fonts */
+  --font-h1: 700 70px "Roboto";
+  --font-h2: 700 50px "Roboto";
+  --font-bold-big: 700 32px "Roboto";
+  --font-bold-small: 500 24px "Roboto";
+  --font-bold-medium: 500 20px "Roboto";
+  --font-bold-tiny: 500 16px "Roboto";
+  --font-medium-small: 400 24px "Roboto";
+  --font-p: 300 25px "Roboto";
+  --font-thin-small: 300 20px "Roboto";
+  --font-thin-tiny: 300 16px "Roboto";
+
+  /* padding */
+  --padding-small: 10px;
+  --padding-medium: 20px;
+  --padding-large: 30px;
+  --padding-x-large: 50px;
+  --padding-xx-large: 100px;
+
+  /* gap */
+  --gap-x-small: 5px;
+  --gap-small: 16px;
+  --gap-medium: 20px;
+  --gap-large: 30px;
+  --gap-x-large: 50px;
+  --gap-xx-large: 100px;
+}

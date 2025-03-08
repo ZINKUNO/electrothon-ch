@@ -1,0 +1,16 @@
+{
+    "short_name": "Speak pro",
+    "name": "speak pro",
+    "icons": [
+      {
+        "src": "verbalmatelogo.svg",
+        "type": "image/svg",
+        "sizes": "512x512"
+      }
+    ],
+    "start_url": ".",
+    "display": "standalone",
+    "theme_color": "#000000",
+    "background_color": "#ffffff"
+  }
+  

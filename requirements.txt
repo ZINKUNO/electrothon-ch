@@ -1,0 +1,7 @@
+opencv-python-headless
+plotly
+mediapipe
+av
+joblib
+xgboost
+moviepy

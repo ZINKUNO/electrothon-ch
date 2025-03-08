@@ -1,12 +1,12 @@
-# 🎙️ VerbalMate AI
+# 🎙️ SpeakPro AI
 ## 🌟 The Problem We Are Trying to Solve
 Today many people struggle with improving their conversational skills due to lack of personalized feedback and practice. There is a need for an AI solution that provides real-time analysis and actionable feedback to help individuals enhance their communication abilities. To practice their conversational skills in a simulated environment so they can perform well in the real world.
 ## 💡 Our Solution
-VerbalMate AI is an innovative tool designed to help individuals enhance their conversational skills by turning everyday interactions into valuable learning experiences. By recording, transcribing, and analyzing conversations, VerbalMate AI provides personalized feedback, performance insights, and simulated scenarios, enabling users to improve their communication abilities and gain confidence in any setting.
+SpeakPro AI is an innovative tool designed to help individuals enhance their conversational skills by turning everyday interactions into valuable learning experiences. By recording, transcribing, and analyzing conversations, SpeakPro AI provides personalized feedback, performance insights, and simulated scenarios, enabling users to improve their communication abilities and gain confidence in any setting.
 VerbalMate also provides the opportunity to practice your conversational skills with an Interviewer AI based on any situation you want to simulate by giving it a prompt.
 Additionally, with Lucy 3D Conversational AI, users can engage in lifelike, personalized interactions with an AI avatar, adapting to contextual changes and recognizing emotions for a more immersive experience.
 The Virtual Meeting Room feature allows users to join virtual meetings in a 3D environment, collaborate in real-time, and maintain anonymity, making it an ideal tool for practicing communication in group settings and professional scenarios.
-## ✨ Key Features of VerbalMate AI
+## ✨ Key Features of SpeakPro AI
 ## 📊 Analyze Conversations with AI
 
    ### Performance Analyzer:
@@ -98,9 +98,9 @@ For any port conflicts, check if any other applications are using port 3000 or 8
 If Streamlit installation fails, try using a virtual environment: python -m venv venv and source venv/bin/activate (or venv\Scripts\activate on Windows) before installing
 
 ## 📞 Support
-Having trouble with VerbalMate AI? Open an issue on our GitHub repository or reach out to our development team.
+Having trouble with SpeakPro AI? Open an issue on our GitHub repository or reach out to our development team.
 ## 🙏 THANK YOU
-We appreciate your interest in VerbalMate AI! We're constantly working to improve conversational skills for everyone.
+We appreciate your interest in SpeakPro AI! We're constantly working to improve conversational skills for everyone.
 ## 📱 Connect With Us
    ### email:adoranto737@gmail.com
 
